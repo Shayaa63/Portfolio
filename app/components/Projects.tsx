@@ -3,8 +3,8 @@ const projects = [
     title: "Bloggplattform",
     description: "Dynamisk blogg med kommentarer, likes och responsiv design byggd med vanilla JS.",
     tech: ["HTML5", "CSS3", "JavaScript"],
-    github: "https://github.com/Shayaa63/Bloggplattform",
-    live: "",
+    github: "https://bloggplattform.vercel.app/",
+    live: "https://bloggplattform.vercel.app/",
   },
   {
     title: "Pokémon App",

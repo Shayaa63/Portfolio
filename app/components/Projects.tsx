@@ -13,7 +13,7 @@ const projects = [
       "React-app som hämtar data från PokéAPI. Välj bland de första 151 Pokémon och se detaljer.",
     tech: ["React", "PokéAPI", "CSS"],
     github: "https://github.com/Shayaa63/pokemon-app",
-    live: "",
+    live: "https://shayaa-pokemon.vercel.app/",
   },
   {
     title: "Chattapp",

@@ -1,36 +1,37 @@
+import { profile } from "../data/profile";
+
 export default function Contact() {
   return (
-    <div style={{
-      background: "var(--surface)",
-      border: "1px solid var(--border)",
-      borderRadius: "14px",
-      padding: "20px",
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      gap: "16px",
-      flexWrap: "wrap",
-    }}>
+    <section id="kontakt" className="card contact" aria-labelledby="kontakt-title">
       <div>
-        <p style={{fontSize: "15px", fontWeight: 700, color: "var(--text)", margin: "0 0 4px"}}>
-          Låt oss prata
-        </p>
-        <p style={{fontSize: "13px", color: "var(--muted)", margin: 0}}>
-          Öppen för jobb, LIA och samarbeten.
+        <h2
+          id="kontakt-title"
+          style={{
+            fontSize: "16px",
+            fontWeight: 700,
+            color: "var(--text)",
+            margin: "0 0 4px",
+          }}
+        >
+          Hör av dig
+        </h2>
+        <p style={{ fontSize: "13px", color: "var(--muted)", margin: 0 }}>
+          Jag letar efter jobb, LIA och samarbeten där jag får lära mig mer.
         </p>
       </div>
-      <a href="mailto:aisha@email.com" style={{
-        background: "var(--accent)",
-        color: "#ffffff",
-        borderRadius: "8px",
-        padding: "10px 20px",
-        fontSize: "13px",
-        fontWeight: 600,
-        textDecoration: "none",
-        whiteSpace: "nowrap",
-      }}>
-        Kontakta mig
-      </a>
-    </div>
+      <div className="contact-actions">
+        <a className="btn btn-primary" href={`mailto:${profile.email}`}>
+          Mejla mig
+        </a>
+        <a
+          className="btn btn-ghost"
+          href={profile.github}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub ↗
+        </a>
+      </div>
+    </section>
   );
 }

@@ -1,213 +1,68 @@
-const projects = [
-  {
-    title: "Jobbportalen",
-    description:
-      "Dynamisk jobbportal med jobbannonser som hämtas från ett CMS. Separata sidor för jobblista och jobbdetaljer.",
-    tech: ["Next.js", "React", "Storyblok", "CMS"],
-    github: "https://github.com/Shayaa63/jobbportalenex",
-    live: "https://jobbportalenex.vercel.app/",
-  },
-  {
-    title: "Artikelportalen",
-    description:
-      "Dynamisk artikelportal med innehåll som presenteras på en webbplats med separata vyer för artiklar och artikelinformation.",
-    tech: ["Next.js", "React", "Storyblok", "CMS"],
-    github: "https://github.com/Shayaa63/Artikelportalenex",
-    live: "https://artikelportalenex.vercel.app/",
-  },
-  {
-    title: "Pokémon App",
-    description:
-      "Sökbar Pokédex som hämtar data från PokéAPI. Separerade sök och karusell i distinkta flöden med egna loading states och en 3D-karusellanimation.",
-    decision:
-      "Refaktorerade från URL-state till objekt-state, eliminerade async-race conditions och gav direkt access till all data utan extra fetch.",
-    tech: ["React", "PokéAPI", "CSS"],
-    github: "https://github.com/Shayaa63/pokemon-app",
-    live: "https://shayaa-pokemon.vercel.app/",
-  },
-  {
-    title: "Bloggplattform",
-    description:
-      "Dynamisk blogg med kommentarer, likes och responsiv design. Modulär struktur med separata funktioner för rendering, state och events.",
-    decision:
-      "Valde vanilla JS medvetet för att förstå DOM utan abstraktioner, samma grund som React bygger på.",
-    tech: ["HTML5", "CSS3", "JavaScript"],
-    github: "https://github.com/Shayaa63/Bloggplattform",
-    live: "https://bloggplattform.vercel.app/",
-  },
-  {
-    title: "Chattapp",
-    description: "Enkel realtidschatt byggd i HTML och JavaScript.",
-    tech: ["HTML", "JavaScript"],
-    github: "https://github.com/Shayaa63/Chattapp",
-    live: "",
-  },
-  {
-    title: "Road2",
-    description:
-      "App som hjälper dig sätta mål, bryta ner dem i steg och följa din progress.",
-    tech: ["Pågår"],
-    github: "https://github.com/Shayaa63/Road2",
-    live: "",
-  },
-];
+import { projects, slug } from "../data/projects";
 
 export default function Projects() {
   return (
-    <div
-      style={{
-        background: "var(--surface)",
-        border: "1px solid var(--border)",
-        borderRadius: "14px",
-        padding: "20px",
-      }}
-    >
-      <p
-        style={{
-          fontSize: "11px",
-          fontWeight: 600,
-          letterSpacing: "1.2px",
-          textTransform: "uppercase",
-          color: "var(--muted)",
-          margin: "0 0 16px",
-        }}
-      >
+    <section id="projekt" className="card" aria-labelledby="projekt-title">
+      <h2 id="projekt-title" className="card-title">
         Projekt
-      </p>
+      </h2>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-          gap: "12px",
-        }}
-      >
+      <div className="projects-grid">
         {projects.map((p) => (
-          <div
-            key={p.title}
-            style={{
-              background: "var(--surface-nested)",
-              border: "1px solid var(--border)",
-              borderRadius: "10px",
-              padding: "16px",
-              display: "flex",
-              flexDirection: "column",
-              gap: "8px",
-            }}
-          >
-            {/* Titel + länkar */}
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-start",
-                gap: "8px",
-              }}
-            >
-              <p
-                style={{
-                  fontSize: "14px",
-                  fontWeight: 600,
-                  color: "var(--text)",
-                  margin: 0,
-                }}
-              >
+          <article key={p.title} id={slug(p.title)} className="project">
+            <div className="project-head">
+              <h3 className="project-title">
                 {p.title}
-              </p>
+                {p.inProgress && <span className="badge">Pågår</span>}
+              </h3>
 
-              <div style={{ display: "flex", gap: "8px", flexShrink: 0 }}>
+              <div className="project-links">
                 {p.live && (
                   <a
+                    className="live"
                     href={p.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{
-                      fontSize: "11px",
-                      color: "var(--accent)",
-                      textDecoration: "none",
-                    }}
+                    aria-label={`${p.title}, live-demo (öppnas i ny flik)`}
                   >
                     Live ↗
                   </a>
                 )}
-
                 <a
                   href={p.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{
-                    fontSize: "11px",
-                    color: "var(--muted)",
-                    textDecoration: "none",
-                  }}
+                  aria-label={`${p.title} på GitHub (öppnas i ny flik)`}
                 >
                   GitHub ↗
                 </a>
               </div>
             </div>
 
-            {/* Beskrivning — växer för att fylla utrymmet */}
-            <p
-              style={{
-                fontSize: "12px",
-                lineHeight: "1.6",
-                color: "var(--muted)",
-                margin: 0,
-                flex: 1,
-              }}
-            >
-              {p.description}
-            </p>
+            <p className="project-desc">{p.description}</p>
 
-            {/* Tekniskt beslut — alltid samma höjd, centrerat */}
-            <div
-              style={{
-                minHeight: "52px",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              {p.decision ? (
-                <p
-                  style={{
-                    fontSize: "11px",
-                    lineHeight: "1.5",
-                    color: "var(--accent-text)",
-                    padding: "6px 10px",
-                    background: "var(--accent-light)",
-                    borderRadius: "6px",
-                    fontStyle: "italic",
-                    margin: 0,
-                    width: "100%",
-                  }}
-                >
-                  💡 {p.decision}
-                </p>
-              ) : (
-                <div style={{ width: "100%", height: "52px" }} />
-              )}
-            </div>
+            {p.learned && (
+              <p className="project-note">
+                <strong>Lärde mig:</strong> {p.learned}
+              </p>
+            )}
 
-            {/* Tech-pills — alltid längst ned */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
-              {p.tech.map((t) => (
-                <span
-                  key={t}
-                  style={{
-                    fontSize: "11px",
-                    padding: "2px 8px",
-                    borderRadius: "4px",
-                    background: "var(--accent-light)",
-                    color: "var(--accent-text)",
-                  }}
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
+            {p.decision && <p className="project-decision">💡 {p.decision}</p>}
+
+            <div className="project-spacer" />
+
+            {p.tech.length > 0 && (
+              <div className="project-tech">
+                {p.tech.map((t) => (
+                  <span key={t} className="chip-accent">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            )}
+          </article>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

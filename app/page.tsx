@@ -1,8 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
 import Contact from "./components/Contact";
+import Hero from "./components/Hero";
+import Learning from "./components/Learning";
 import Projects from "./components/Projects";
 import Sidebar from "./components/Sidebar";
+import { profile } from "./data/profile";
 
 export default function Home() {
   const [dark, setDark] = useState(true);
@@ -10,10 +13,13 @@ export default function Home() {
 
   useEffect(() => {
     setMounted(true);
-    const saved = localStorage.getItem("theme");
-    if (saved === "light") {
-      setDark(false);
-      document.documentElement.setAttribute("data-theme", "light");
+    try {
+      if (localStorage.getItem("theme") === "light") {
+        setDark(false);
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    } catch {
+      // localStorage kan vara blockerat, då används mörkt tema
     }
   }, []);
 
@@ -21,65 +27,55 @@ export default function Home() {
     const next = dark ? "light" : "dark";
     setDark(!dark);
     document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("theme", next);
+    try {
+      localStorage.setItem("theme", next);
+    } catch {
+      // ignoreras
+    }
   }
 
   return (
-    <main style={{
-      minHeight: "100vh",
-      padding: "24px 16px",
-      background: "var(--bg)",
-    }}>
-      <div style={{maxWidth: "1100px", margin: "0 auto"}}>
+    <main id="main" className="page">
+      <a className="skip-link" href="#projekt">
+        Hoppa till projekten
+      </a>
 
+      <div className="page-inner">
         {/* Topbar */}
-        <div style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "24px",
-        }}>
-          <p style={{fontSize: "14px", fontWeight: 600, color: "var(--text)"}}>
-            Aisha Hashi
-          </p>
-          {mounted && (
-            <button onClick={toggleTheme} style={{
-              background: "var(--surface)",
-              border: "1px solid var(--border)",
-              color: "var(--muted)",
-              borderRadius: "8px",
-              padding: "6px 12px",
-               fontSize: "12px",
-              cursor: "pointer",
-            }}>
-              {dark ? "☀ Ljust" : "☾ Mörkt"}
-            </button>
-          )}
-        </div>
+        <header className="topbar">
+          <p className="topbar-name">{profile.name}</p>
+          <nav className="topbar-right" aria-label="Sidor">
+            <a className="nav-link" href="#larande">
+              Lärande
+            </a>
+            <a className="nav-link" href="#projekt">
+              Projekt
+            </a>
+            <a className="nav-link" href="#kontakt">
+              Kontakt
+            </a>
+            {mounted && (
+              <button
+                className="theme-btn"
+                onClick={toggleTheme}
+                aria-label={dark ? "Byt till ljust tema" : "Byt till mörkt tema"}
+              >
+                {dark ? "☀ Ljust" : "☾ Mörkt"}
+              </button>
+            )}
+          </nav>
+        </header>
 
-        {/* Layout — sidebar + innehåll */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "clamp(220px, 25%, 280px) 1fr",
-          gap: "16px",
-          alignItems: "start",
-        }}>
+        {/* Sidebar + innehåll. Staplas på mobil via .layout i globals.css */}
+        <div className="layout">
           <Sidebar />
-          <div style={{display: "flex", flexDirection: "column", gap: "16px"}}>
+          <div className="content">
+            <Hero />
+            <Learning />
             <Projects />
             <Contact />
           </div>
         </div>
-
-        {/* Mobil — stapla vertikalt under 768px */}
-        <style>{`
-          @media (max-width: 768px) {
-            .portfolio-grid {
-              grid-template-columns: 1fr !important;
-            }
-          }
-        `}</style>
-
       </div>
     </main>
   );

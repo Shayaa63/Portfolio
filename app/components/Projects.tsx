@@ -1,19 +1,39 @@
 const projects = [
   {
-    title: "Bloggplattform",
+    title: "Jobbportalen",
     description:
-      "Dynamisk blogg med kommentarer, likes och responsiv design byggd med vanilla JS.",
-    tech: ["HTML5", "CSS3", "JavaScript"],
-    github: "https://github.com/Shayaa63/Bloggplattform",
-    live: "https://bloggplattform.vercel.app/",
+      "Dynamisk jobbportal med jobbannonser som hämtas från ett CMS. Separata sidor för jobblista och jobbdetaljer.",
+    tech: ["Next.js", "React", "Storyblok", "CMS"],
+    github: "https://github.com/Shayaa63/jobbportalenex",
+    live: "https://jobbportalenex.vercel.app/",
+  },
+  {
+    title: "Artikelportalen",
+    description:
+      "Dynamisk artikelportal med innehåll som presenteras på en webbplats med separata vyer för artiklar och artikelinformation.",
+    tech: ["Next.js", "React", "Storyblok", "CMS"],
+    github: "https://github.com/Shayaa63/Artikelportalenex",
+    live: "https://artikelportalenex.vercel.app/",
   },
   {
     title: "Pokémon App",
     description:
-      "React-app som hämtar data från PokéAPI. Välj bland de första 151 Pokémon och se detaljer.",
+      "Sökbar Pokédex som hämtar data från PokéAPI. Separerade sök och karusell i distinkta flöden med egna loading states och en 3D-karusellanimation.",
+    decision:
+      "Refaktorerade från URL-state till objekt-state, eliminerade async-race conditions och gav direkt access till all data utan extra fetch.",
     tech: ["React", "PokéAPI", "CSS"],
     github: "https://github.com/Shayaa63/pokemon-app",
     live: "https://shayaa-pokemon.vercel.app/",
+  },
+  {
+    title: "Bloggplattform",
+    description:
+      "Dynamisk blogg med kommentarer, likes och responsiv design. Modulär struktur med separata funktioner för rendering, state och events.",
+    decision:
+      "Valde vanilla JS medvetet för att förstå DOM utan abstraktioner, samma grund som React bygger på.",
+    tech: ["HTML5", "CSS3", "JavaScript"],
+    github: "https://github.com/Shayaa63/Bloggplattform",
+    live: "https://bloggplattform.vercel.app/",
   },
   {
     title: "Chattapp",
@@ -75,7 +95,7 @@ export default function Projects() {
               gap: "8px",
             }}
           >
-            {/* Titel + GitHub */}
+            {/* Titel + länkar */}
             <div
               style={{
                 display: "flex",
@@ -94,7 +114,8 @@ export default function Projects() {
               >
                 {p.title}
               </p>
-              <div style={{ display: "flex", gap: "8px" }}>
+
+              <div style={{ display: "flex", gap: "8px", flexShrink: 0 }}>
                 {p.live && (
                   <a
                     href={p.live}
@@ -104,12 +125,12 @@ export default function Projects() {
                       fontSize: "11px",
                       color: "var(--accent)",
                       textDecoration: "none",
-                      whiteSpace: "nowrap",
                     }}
                   >
                     Live ↗
                   </a>
                 )}
+
                 <a
                   href={p.github}
                   target="_blank"
@@ -118,7 +139,6 @@ export default function Projects() {
                     fontSize: "11px",
                     color: "var(--muted)",
                     textDecoration: "none",
-                    whiteSpace: "nowrap",
                   }}
                 >
                   GitHub ↗
@@ -126,27 +146,50 @@ export default function Projects() {
               </div>
             </div>
 
-            {/* Beskrivning */}
+            {/* Beskrivning — växer för att fylla utrymmet */}
             <p
               style={{
                 fontSize: "12px",
                 lineHeight: "1.6",
                 color: "var(--muted)",
                 margin: 0,
+                flex: 1,
               }}
             >
               {p.description}
             </p>
 
-            {/* Tech-pills */}
+            {/* Tekniskt beslut — alltid samma höjd, centrerat */}
             <div
               style={{
+                minHeight: "52px",
                 display: "flex",
-                flexWrap: "wrap",
-                gap: "4px",
-                marginTop: "auto",
+                alignItems: "center",
               }}
             >
+              {p.decision ? (
+                <p
+                  style={{
+                    fontSize: "11px",
+                    lineHeight: "1.5",
+                    color: "var(--accent-text)",
+                    padding: "6px 10px",
+                    background: "var(--accent-light)",
+                    borderRadius: "6px",
+                    fontStyle: "italic",
+                    margin: 0,
+                    width: "100%",
+                  }}
+                >
+                  💡 {p.decision}
+                </p>
+              ) : (
+                <div style={{ width: "100%", height: "52px" }} />
+              )}
+            </div>
+
+            {/* Tech-pills — alltid längst ned */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
               {p.tech.map((t) => (
                 <span
                   key={t}

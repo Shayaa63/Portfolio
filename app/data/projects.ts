@@ -73,7 +73,7 @@ export const projects: Project[] = [
       "Valde vanilla JS medvetet för att förstå DOM utan abstraktioner, samma grund som React bygger på.",
     tech: ["HTML5", "CSS3", "JavaScript"],
     github: "https://github.com/Shayaa63/Road2",
-    live: "",
+    live: "https://frontend-one-kappa-41.vercel.app/",
     inProgress: true,
   },
 ];

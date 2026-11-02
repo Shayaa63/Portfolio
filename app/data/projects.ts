@@ -78,6 +78,7 @@ export const projects: Project[] = [
   },
 ];
 
+
 export const liveCount = projects.filter((p) => p.live).length;
 
 /** "Pokémon App" -> "pokemon-app", används som ankare för länkar */

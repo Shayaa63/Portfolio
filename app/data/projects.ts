@@ -65,18 +65,13 @@ export const projects: Project[] = [
     live: "https://bloggplattform.vercel.app/",
   },
   {
-    title: "Chattapp",
-    description: "Enkel realtidschatt byggd i HTML och JavaScript.",
-    learned: "Hantering av realtids-events och asynkrona meddelandeflöden i DOM.",
-    tech: ["HTML", "JavaScript"],
-    github: "https://github.com/Shayaa63/Chattapp",
-    live: "",
-  },
-  {
     title: "Road2",
     description:
-      "App som hjälper dig sätta mål, bryta ner dem i steg och följa din progress.",
-    tech: [],
+      "Personlig mål- och progressapp som hjälper användare att omvandla större ambitioner till konkreta steg och följa sin utveckling visuellt. Projektet fokuserar på att göra mål enklare att planera, organisera och följa upp.",
+    learned: "DOM, events och state utan ramverk.",
+    decision:
+      "Valde vanilla JS medvetet för att förstå DOM utan abstraktioner, samma grund som React bygger på.",
+    tech: ["HTML5", "CSS3", "JavaScript"],
     github: "https://github.com/Shayaa63/Road2",
     live: "",
     inProgress: true,

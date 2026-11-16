@@ -11,7 +11,7 @@ export const path: Step[] = [
   {
     title: "Grunden i vanlig JavaScript",
     text: "Jag började utan ramverk för att förstå hur DOM, events och state faktiskt fungerar.",
-    projects: ["Bloggplattform", "app"],
+    projects: ["Bloggplattform"],
   },
   {
     title: "React och externa API:er",

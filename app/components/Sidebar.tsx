@@ -3,79 +3,56 @@ import { profile, stack } from "../data/profile";
 export default function Sidebar() {
   return (
     <aside className="sidebar" aria-label="Om mig">
-      <div className="card">
-        <div className="avatar" aria-hidden="true">
-          {profile.initials}
-        </div>
-        <p
-          style={{
-            fontSize: "17px",
-            fontWeight: 700,
-            color: "var(--text)",
-            margin: "0 0 4px",
-          }}
-        >
-          {profile.name}
-        </p>
-        <p
-          style={{
-            fontSize: "13px",
-            color: "var(--accent)",
-            margin: "0 0 12px",
-          }}
-        >
-          {profile.role}
-        </p>
-        <p
-          style={{
-            fontSize: "13px",
-            lineHeight: "1.7",
-            color: "var(--muted)",
-            margin: 0,
-          }}
-        >
+      <section className="profile-panel">
+        <div className="profile-monogram">{profile.initials}</div>
+
+        <span className="eyebrow">OM MIG</span>
+        <h2>{profile.name}</h2>
+        <p className="profile-role">{profile.role}</p>
+
+        <p className="profile-description">
           Jag har en bakgrund inom elektronik och vill förstå hur ett system
           hänger ihop, från hårdvara till gränssnitt. Jag bygger med fokus på
-          ren kod och en genomtänkt användarupplevelse.
+          problemlösning, tydlig struktur och användarupplevelse.
         </p>
-      </div>
 
-      <div className="card">
-        <h2 className="card-title" style={{ marginBottom: "12px" }}>
-          Stack
-        </h2>
-        {stack.map((g) => (
-          <div key={g.group} className="stack-group">
-            <h3>{g.group}</h3>
+        <a className="profile-email" href={`mailto:${profile.email}`}>
+          Säg hej <span aria-hidden="true">↗</span>
+        </a>
+      </section>
+
+      <section className="stack-panel">
+        <span className="eyebrow">VERKTYGSLÅDA</span>
+        <h2 className="sidebar-heading">Min stack.</h2>
+
+        {stack.map((group) => (
+          <div key={group.group} className="stack-group">
+            <h3>{group.group}</h3>
             <div className="stack-items">
-              {g.items.map((s) => (
-                <span key={s} className="chip">
-                  {s}
+              {group.items.map((item) => (
+                <span key={item} className="chip">
+                  {item}
                 </span>
               ))}
             </div>
           </div>
         ))}
-      </div>
+      </section>
 
-      <div className="card">
-        <h2 className="card-title" style={{ marginBottom: "12px" }}>
-          Länkar
-        </h2>
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <a
-            className="link-row"
-            href={profile.github}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub ↗
-          </a>
-          <a className="link-row" href={`mailto:${profile.email}`}>
-            {profile.email}
-          </a>
-        </div>
-      </div>
+      <section className="links-panel">
+        <span className="eyebrow">HITTA MIG</span>
+        <a
+          className="social-link"
+          href={profile.github}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub <span aria-hidden="true">↗</span>
+        </a>
+        <a className="social-link" href={`mailto:${profile.email}`}>
+          E-post <span aria-hidden="true">↗</span>
+        </a>
+      </section>
     </aside>
   );
 }

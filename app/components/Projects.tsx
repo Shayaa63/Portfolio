@@ -2,37 +2,66 @@ import { projects, slug } from "../data/projects";
 
 export default function Projects() {
   return (
-    <section id="projekt" className="card" aria-labelledby="projekt-title">
-      <h2 id="projekt-title" className="card-title">
-        Projekt
-      </h2>
+    <section
+      id="projekt"
+      className="projects-section"
+      aria-labelledby="projekt-title"
+    >
+      <div className="section-heading">
+        <div>
+          <span className="eyebrow">UTVALDA ARBETEN / 01—07</span>
+          <h2 id="projekt-title" className="section-title">
+            Saker jag har <span>byggt.</span>
+          </h2>
+        </div>
+        <span className="section-count">
+          {String(projects.length).padStart(2, "0")} projekt
+        </span>
+      </div>
 
-      <div className="projects-grid">
-        {projects.map((p) => (
-          <article key={p.title} id={slug(p.title)} className="project">
+      <div className="projects-masonry">
+        {projects.map((p, index) => (
+          <article
+            key={p.title}
+            id={slug(p.title)}
+            className={`project project-${index + 1} ${
+              index === 0 ? "project-featured" : ""
+            }`}
+          >
+            <div className="project-topline">
+              <span className="project-number">
+                {String(index + 1).padStart(2, "0")} / PROJECT
+              </span>
+
+              {p.inProgress && (
+                <span className="badge">
+                  <span className="badge-dot" />
+                  Pågår
+                </span>
+              )}
+            </div>
+
             <div className="project-head">
-              <h3 className="project-title">
-                {p.title}
-                {p.inProgress && <span className="badge">Pågår</span>}
-              </h3>
+              <h3 className="project-title">{p.title}</h3>
 
               <div className="project-links">
                 {p.live && (
                   <a
-                    className="live"
+                    className="project-link-live"
                     href={p.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`${p.title}, live-demo (öppnas i ny flik)`}
+                    aria-label={`${p.title}, live-demo`}
                   >
                     Live ↗
                   </a>
                 )}
+
                 <a
                   href={p.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`${p.title} på GitHub (öppnas i ny flik)`}
+                  aria-label={`${p.title} på GitHub`}
                 >
                   GitHub ↗
                 </a>
@@ -42,20 +71,26 @@ export default function Projects() {
             <p className="project-desc">{p.description}</p>
 
             {p.learned && (
-              <p className="project-note">
-                <strong>Lärde mig:</strong> {p.learned}
-              </p>
+              <div className="project-note">
+                <span className="note-label">VAD JAG LÄRT MIG</span>
+                <p>{p.learned}</p>
+              </div>
             )}
 
-            {p.decision && <p className="project-decision">💡 {p.decision}</p>}
-
-            <div className="project-spacer" />
+            {p.decision && (
+              <div className="project-decision">
+                <span className="decision-icon" aria-hidden="true">
+                  ✳
+                </span>
+                <p>{p.decision}</p>
+              </div>
+            )}
 
             {p.tech.length > 0 && (
               <div className="project-tech">
-                {p.tech.map((t) => (
-                  <span key={t} className="chip-accent">
-                    {t}
+                {p.tech.map((tech) => (
+                  <span key={tech} className="chip-accent">
+                    {tech}
                   </span>
                 ))}
               </div>

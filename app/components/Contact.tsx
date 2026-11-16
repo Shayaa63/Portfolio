@@ -2,35 +2,33 @@ import { profile } from "../data/profile";
 
 export default function Contact() {
   return (
-    <section id="kontakt" className="card contact" aria-labelledby="kontakt-title">
-      <div>
-        <h2
-          id="kontakt-title"
-          style={{
-            fontSize: "16px",
-            fontWeight: 700,
-            color: "var(--text)",
-            margin: "0 0 4px",
-          }}
-        >
-          Hör av dig
-        </h2>
-        <p style={{ fontSize: "13px", color: "var(--muted)", margin: 0 }}>
-          Jag letar efter jobb, LIA och samarbeten där jag får lära mig mer.
-        </p>
+    <section
+      id="kontakt"
+      className="contact-section"
+      aria-labelledby="kontakt-title"
+    >
+      <span className="eyebrow">NÄSTA KAPITEL</span>
+
+      <div className="contact-content">
+        <div>
+          <h2 id="kontakt-title">
+            Har du något
+            <span> på gång?</span>
+          </h2>
+          <p>
+            Jag är öppen för nya möjligheter, LIA och samarbeten. Hör gärna av
+            dig!
+          </p>
+        </div>
+
+        <a className="contact-button" href={`mailto:${profile.email}`}>
+          Kontakta mig <span aria-hidden="true">↗</span>
+        </a>
       </div>
-      <div className="contact-actions">
-        <a className="btn btn-primary" href={`mailto:${profile.email}`}>
-          Mejla mig
-        </a>
-        <a
-          className="btn btn-ghost"
-          href={profile.github}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GitHub ↗
-        </a>
+
+      <div className="contact-footer">
+        <span>AISHA HASHI © 2026</span>
+        <a href="#main">Till toppen ↑</a>
       </div>
     </section>
   );

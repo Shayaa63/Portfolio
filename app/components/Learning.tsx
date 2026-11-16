@@ -3,33 +3,42 @@ import { slug } from "../data/projects";
 
 export default function Learning() {
   return (
-    <section id="larande" className="card" aria-labelledby="larande-title">
-      <h2 id="larande-title" className="card-title">
-        Min lärandekurva
-      </h2>
+    <section
+      id="larande"
+      className="learning-section"
+      aria-labelledby="larande-title"
+    >
+      <div className="section-heading">
+        <div>
+          <span className="eyebrow">UTVECKLING / STEG FÖR STEG</span>
+          <h2 id="larande-title" className="section-title">
+            Min väg <span>hit.</span>
+          </h2>
+        </div>
+      </div>
 
       <ol className="path">
-        {path.map((step) => (
+        {path.map((step, index) => (
           <li
             key={step.title}
             className={step.current ? "step current" : "step"}
           >
-            <span className="step-marker" aria-hidden="true" />
-            <div>
-              <h3>
-                {step.title}
-                {step.current && (
-                  <>
-                    {" "}
-                    <span className="badge">Pågår</span>
-                  </>
-                )}
-              </h3>
+            <div className="step-index">
+              {String(index + 1).padStart(2, "0")}
+            </div>
+
+            <div className="step-content">
+              <div className="step-heading">
+                <h3>{step.title}</h3>
+                {step.current && <span className="badge">Pågår</span>}
+              </div>
+
               <p>{step.text}</p>
+
               <div className="step-projects">
                 {step.projects.map((name) => (
-                  <a key={name} className="chip" href={`#${slug(name)}`}>
-                    {name}
+                  <a key={name} href={`#${slug(name)}`}>
+                    {name} ↗
                   </a>
                 ))}
               </div>

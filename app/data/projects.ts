@@ -12,6 +12,29 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+
+{
+  title: "StayFinder",
+  description:
+    "Fullstackbokningsplattform där gäster kan söka boenden och hantera bokningar. Värdar kan publicera boenden och hantera bokningsförfrågningar.",
+  learned:
+    "Bygga en fullstackapplikation med Next.js, Hono och Supabase. Arbeta med autentisering, cookies, REST API:er, PostgreSQL och behörighetskontroll.",
+  decision:
+    "Implementerade bokningsregler på backend- och databasnivå. Avbokning sker genom statusändring i stället för permanent radering, med separata behörigheter för gäster och värdar.",
+  tech: [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Hono",
+    "Supabase",
+    "PostgreSQL",
+    "REST API",
+  ],
+  github: "https://github.com/Shayaa63/stayfinder",
+  live: "https://stayfinder-2qvs.vercel.app/",
+  inProgress: true,
+},
   {
     title: "Jobbportalen",
     description:
@@ -34,11 +57,14 @@ export const projects: Project[] = [
   {
     title: "Plot Twist",
     description:
-      "Fullstack-gruppprojekt för byteshandel där jag ansvarade för backend-logik: API-endpoints, autentisering, åtkomstkontroll och validering av användarbehörigheter för bytesförfrågningar.",
-    learned: "Bygga säkra API-endpoints, autentisering och rollbaserad behörighetsstyre i team.",
-    decision:
-      "Strukturerade behörighetskontroller på servernivå för att säkerställa att endast behöriga användare kan ändra eller ta bort sina egna bytesförfrågningar.",
-    tech: ["Node.js", "Express", "REST API", "JavaScript", "Fullstack"],
+  "Fullstack-gruppprojekt för växt- och sticklingsbyte där jag ansvarade för backend-logik: API-endpoints, autentisering, åtkomstkontroll och validering av användarbehörigheter.",
+
+learned:
+  "Bygga REST API:er, arbeta med JWT-autentisering och implementera behörighetskontroll i ett team.",
+
+decision:
+  "Strukturerade behörighetskontroller på servernivå så att endast behöriga användare kan ändra eller ta bort sina egna bytesförfrågningar.",
+  tech: ["Node.js", "Express", "REST API", "JavaScript", "Fullstack"],
     github: "https://github.com/Shayaa63/webb25_alm_group_task", // Lägg till den exakta GitHub-länken till Plot Twist
     live: "https://michelaslan.github.io/webbshop-2026-fe/",
   },
@@ -68,10 +94,11 @@ export const projects: Project[] = [
     title: "Road2",
     description:
       "Personlig mål- och progressapp som hjälper användare att omvandla större ambitioner till konkreta steg och följa sin utveckling visuellt. Projektet fokuserar på att göra mål enklare att planera, organisera och följa upp.",
-    learned: "DOM, events och state utan ramverk.",
-    decision:
-      "Valde vanilla JS medvetet för att förstå DOM utan abstraktioner, samma grund som React bygger på.",
-    tech: ["HTML5", "CSS3", "JavaScript"],
+    learned:
+  "Bygga interaktiva funktioner med DOM, events, state och LocalStorage.",
+
+decision:
+  "Valde vanilla JavaScript för att förstå grunderna i webbutveckling innan jag började använda större ramverk.",tech: ["HTML5", "CSS3", "JavaScript"],
     github: "https://github.com/Shayaa63/Road2",
     live: "https://frontend-one-kappa-41.vercel.app/",
     inProgress: true,
